@@ -68,7 +68,22 @@ function checkItemList() {
   }
 }
 
+function filter(e) {
+  const items = itemList.querySelectorAll("li");
+  const text = e.target.value.toLowerCase();
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+    if (itemName.indexOf(text) == -1) {
+      item.style.display = "none";
+      console.log(item.style.display);
+    } else {
+      item.style.display = "flex";
+    }
+  });
+}
+
 itemForm.addEventListener("submit", onAdd);
 itemList.addEventListener("click", removeItem);
 clearBtn.addEventListener("click", removeAllItems);
 window.addEventListener("DOMContentLoaded", checkItemList);
+itemFilter.addEventListener("input", filter);
